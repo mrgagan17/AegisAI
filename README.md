@@ -53,7 +53,7 @@ CHROMA_PORT=8000
 CHROMA_COLLECTION=documents
 ```
 
-*(You can copy `backend/.env.example` as a template).*
+
 
 ### 2. Run Databases using Docker Compose
 Start MongoDB and ChromaDB by running the following command from the root directory:
