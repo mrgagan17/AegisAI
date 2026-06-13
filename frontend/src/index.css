@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+    @apply antialiased transition-colors duration-200;
+  }
+  
+  body {
+    @apply bg-slate-50 text-slate-800;
+  }
+  
+  body.dark {
+    @apply bg-[#0b0c10] text-slate-100;
+  }
+
+  /* Custom Scrollbar Styles */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-dark-700 hover:bg-dark-600;
+  }
+}
+
+@layer components {
+  /* Premium Glassmorphism Cards */
+  .glass-card {
+    @apply bg-white/75 backdrop-blur-md border border-slate-200/50 shadow-sm rounded-2xl;
+  }
+  .dark .glass-card {
+    @apply bg-dark-900/60 backdrop-blur-md border border-dark-800/40 shadow-xl;
+  }
+
+  /* Glass Panels for Headers / Sidebars */
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-lg border border-slate-200/50;
+  }
+  .dark .glass-panel {
+    @apply bg-dark-950/70 backdrop-blur-lg border border-dark-800/40;
+  }
+
+  /* Glowing hover buttons */
+  .btn-glow {
+    @apply relative overflow-hidden transition-all duration-300 active:scale-[0.98];
+  }
+  .btn-glow::after {
+    content: '';
+    @apply absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300;
+  }
+  .btn-glow:hover::after {
+    @apply opacity-100;
+  }
+
+  /* Shimmer Loading Effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.08) 20%,
+      rgba(255, 255, 255, 0.15) 60%,
+      rgba(255, 255, 255, 0) 100-percent
+    );
+    background-size: 200% 100%;
+    animation: shimmer-anim 1.5s infinite;
+  }
+}
+
+@keyframes shimmer-anim {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Custom styles for ChatGPT typing indicator */
+.typing-dot {
+  animation: typing-bounce 1.4s infinite both;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: .2s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: .4s;
+}
+
+@keyframes typing-bounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scroll Snap for Chat Box messages */
+.snap-end {
+  scroll-snap-align: end;
+}
